@@ -1,5 +1,12 @@
 # FamousObserver
 
+famousObserver is a general library for running functions repeatedly, capturing and timestamping that output,
+and reporting it back for validation purposes.
+
+The primary intended focus of FamousObserver is testing.
+
+## Introduction
+
 Creates a singleton that sends messages back and forth between various componnents and the public namespace.
 Designed to facilitate testing and benchmarking of Famous components.
 
@@ -14,6 +21,17 @@ into a hidden DOM element (which does not have to exist at the time).
 
 It is useful to note that most transforms in Famous have a callback (optional) which is a convenient place
 to put your publish command (as below).
+
+## Dependencies/Environment
+
+famousObserver depends on require.js. It does *not* depend on Famous directly - it can be used to test anything
+that you need to repeatedly measure and report on. it was *designed* to test Famous' code, but anything that
+is in the generaal integrated test/browser/JS school can benefit from famousObserver.
+
+famousObserver is NOT a test runner. It can be used by a test runner to record and measure behavior. As such
+it can run with any test runner -- Selenium/WebDriver, Mocha, Tap, PhantomJS, etc.
+
+famousObserver is designed to run in the browser -- it is not a node.js module.
 
 ## Using FamousObserver
 
@@ -131,3 +149,18 @@ zero impact on performance is the goal, take as few measurements as possible.
      */
     observer.startLogging('box-ele')
 ```
+
+## IMPORTANT ! Prerequisites for running the examples
+
+The examples checked in were created with [generator-famous](https://github.com/Famous/generator-famous).
+As such you must
+
+1. have generator-famous installed globally
+2. run `bower install` in each of the test* (testObserver, tesdtScroll...) folders
+   to pull in/refresh the `lib` directory.
+3. run `grunt build` from the root to copy observer into each test case.
+
+*it is very important that these steps be done in this order.* -- step 2 creates the lib folder
+and famous folder into which the observers' folder must be copied.
+
+Read individual scenario README.md's for further details

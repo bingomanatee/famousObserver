@@ -1,0 +1,27 @@
+{
+  "name": "famousObserver",
+  "description": "Testing observed scroll movements.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/bingomanatee/famousObserver",
+  "author": {
+    "name": "David Edelhart",
+    "url": "http://github.com/bingomanatee/"
+  },
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bingomanatee/testscroll.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bingomanatee/famousObserver/issues"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "grunt-contrib-copy": "^0.5.0",
+    "load-grunt-config": "^0.9.1"
+  },
+  "scripts": {}
+}

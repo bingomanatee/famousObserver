@@ -182,4 +182,4 @@ Properties of interest can be enumerated as an array including some or all of th
 
 `eleSerialize` requires `famous/core/Transform` to do matrix calculations. (its lazy loaded when 'matrix' is requested)
 
-See testEleSer for usage examples. 
+See testEleSer for usage examples.

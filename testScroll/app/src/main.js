@@ -13,6 +13,7 @@ define(function (require, exports, module) {
     var ContainerSurface = require('famous/surfaces/ContainerSurface');
     var observer = require('famous/observer/Observer');
     var Graph = require('famous/observer/Graph');
+    var eleSerialize = require('famous/observer/eleSerialize');
 
     // create the main context
     var mainContext = Engine.createContext();
@@ -122,9 +123,8 @@ define(function (require, exports, module) {
         for (var i = 0; i < l; ++i) {
             var ele = rows[i];
             if ((ele.style.display != 'none') && (ele.hasAttribute('data-famous-id'))) {
-                var m = observer.getMatrix(ele);
-                var mm = observer.compressMatrices(m);
-                var height = mm[13];
+                var m = eleSerialize(ele, ['matrix']).matrix;
+                var height = m[13];
 
                 if (height != null) {
                     out.push({

@@ -122,7 +122,6 @@ define(function (require, exports, module) {
         for (var i = 0; i < l; ++i) {
             var ele = rows[i];
             if ((ele.style.display != 'none') && (ele.hasAttribute('data-famous-id'))) {
-                debugger;
                 var m = observer.getMatrix(ele);
                 var mm = observer.compressMatrices(m);
                 var height = mm[13];

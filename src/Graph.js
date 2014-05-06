@@ -102,7 +102,7 @@ define(function (require, exports, module) {
 
         _pipSurface: function (range, value, color) {
             return new DataSurface({
-                size: [5, 5],
+                size: [10, 10],
                 data: {
                     range: range,
                     value: value,

@@ -10,6 +10,7 @@
 define(function (require, exports, module) {
     var EventHandler = require('famous/core/EventHandler');
     var _ = require('./lodashLite');
+    var Transform = require('famous/core/Transform');
 
     /**
      * This is a class for bridging internal processes in Famous (and other code)
@@ -175,43 +176,38 @@ define(function (require, exports, module) {
     var matrixRegex = /matrix3d\(([^(]+)\)/;
     /**
      *
-     * reutrns an elements' transform matrix.
-     *
-     * Optionally retuns a single cell of that matrix.
-     *
-     * If the matrix is not present or parseable returns null.
-     *
-     * @param ele {DomElement}
-     * @param index {int} optional
-     * @returns [[float]} | {float} | null
+     * returns a nestes set of all the martices of the elements branch.
      */
-    Observer.prototype.getMatrix = function (ele, index) {
+    Observer.prototype.getMatrix = function (ele) {
         var transform = ele.style['-webkit-transform'];
 
-        var out = null;
-        if (!transform) {
-            out = arguments.length > 1 ? null : []
-        } else if (matrixRegex.test(transform)) {
+        var out = [];
+        if (transform && matrixRegex.test(transform)) {
             var match = matrixRegex.exec(transform);
             out = _.map(match[1].split(/ +/g), function (n) {
                 return parseFloat(n, 10);
             })
-        } else {
-            out = arguments.length > 1 ? null : []
         }
 
-        if (out === null){
-            return out;
-        } else if(_.isArray(out) && arguments.length > 1){
-            if (out.length > index){
-                return out[index];
+        if (ele.parentElement) {
+            out = this.getMatrix(ele.parentElement).concat([out]);
+        } else {
+            out = [out];
+        }
+
+        return out;
+    };
+
+    Observer.prototype.compressMatrices = function (matrices) {
+        matrices.reverse();
+        return _.reduce(matrices, function (o, m) {
+             if (m.length) {
+                return Transform.multiply4x4(o, m);
             } else {
-                return null;
+                return o;
             }
-        } else {
-            return out;
-        }
 
+        }, Transform.identity.slice(0));
     };
 
     // note - is a singleton broker.

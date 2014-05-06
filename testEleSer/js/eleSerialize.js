@@ -5,6 +5,7 @@
 define(function (require, exports, module) {
     var _ = require('./lodashLite');
     var isVisible = require('./isVisible');
+    var Transform ;
 
     function _netMatrix(ele) {
         return _compressMatrices(_pollMatrix(ele));
@@ -32,7 +33,7 @@ define(function (require, exports, module) {
         }
 
         if (ele.parentElement) {
-            out = this.getMatrix(ele.parentElement).concat([out]);
+            out = _pollMatrix(ele.parentElement).concat([out]);
         } else {
             out = [out];
         }
@@ -41,6 +42,9 @@ define(function (require, exports, module) {
     }
 
     function _compressMatrices(matrices) {
+        if (!Transform){
+            Transform = require('famous/core/Transform');
+        }
         matrices.reverse();
         return _.reduce(matrices, function (o, m) {
             if (m.length) {
@@ -126,6 +130,10 @@ define(function (require, exports, module) {
 
                     case 'style':
                         out[n] = {};
+                        break;
+
+                    case 'matrix':
+                        out[n] = [];
                         break;
 
                     default:

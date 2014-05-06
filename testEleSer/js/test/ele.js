@@ -27,6 +27,7 @@ define(function (require, exports, module) {
             var eleTwo;
             var eleThreeEmpty;
             var eleFourNotInDom;
+            var eleMatrixOne;
 
             before(function () {
                 eleSerialize = require('./../eleSerialize');
@@ -34,6 +35,7 @@ define(function (require, exports, module) {
                 eleTwo = document.getElementById('ele2');
                 eleThreeEmpty = document.getElementById('ele3'); // an element with no real features
                 eleFourNotInDom = document.getElementById('ele4'); // a nonexistent element
+                eleMatrixOne = document.getElementById('eleM1'); // an element with a transform
             });
 
             describe('content', function () {
@@ -106,10 +108,9 @@ define(function (require, exports, module) {
                 });
 
                 it('should reflect that eleFourNotInDom style is empty', function () {
-                        var ser = eleSerialize(eleFourNotInDom, ['style']); // note -- will poll ALL style attrs - very inefficient
-                        expect(ser.style).to.eql({});
-                    }
-                )
+                    var ser = eleSerialize(eleFourNotInDom, ['style']); // note -- will poll ALL style attrs - very inefficient
+                    expect(ser.style).to.eql({});
+                });
             });
 
             describe('visibility', function () {
@@ -134,6 +135,23 @@ define(function (require, exports, module) {
                 })
             });
 
+            describe('matrix', function(){
+               it('should return the identity matrix for an element without transforms', function(){
+                   var ser = eleSerialize(eleOne, ['matrix']);
+                   expect(ser.matrix).to.eql([ 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 ]); // identity matrix
+               });
+
+               it ('should return the matrix for eleMatrixOne', function(){
+                   var ser = eleSerialize(eleMatrixOne, ['matrix']);
+                   expect(ser.matrix).to.eql([ 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 276, 0, 1 ] );
+               });
+                it('should return an empty matrix for eleFourNotInDom', function(){
+                debugger;
+                    var ser = eleSerialize(eleFourNotInDom, ['matrix']);
+                    expect(ser.matrix).to.eql([]); // empty matrix
+                });
+
+            });
         });
     };
 });

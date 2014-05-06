@@ -164,3 +164,22 @@ As such you must
 and famous folder into which the observers' folder must be copied.
 
 Read individual scenario README.md's for further details
+
+## eleSerialize
+
+`eleSerialize` is a function that takes in an element (or an element spec) and returns a JSON-friendly summary
+of its qualities.
+
+Properties of interest can be enumerated as an array including some or all of the following values:
+
+* 'style'
+* 'style:display,left,...' or any number of style properties.
+* 'visible' : returns a boolean based on true visibility.
+* 'matrix' : returns the net transform matrix
+* 'content' : returns the content of the element (in string form).
+* 'classes' : an array of strings
+* 'size' : an array of the height and width of the element (in pixels).
+
+`eleSerialize` requires `famous/core/Transform` to do matrix calculations. (its lazy loaded when 'matrix' is requested)
+
+See testEleSer for usage examples. 

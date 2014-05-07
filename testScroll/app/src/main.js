@@ -153,11 +153,11 @@ define(function (require, exports, module) {
 
         var watchId = observer.startWatching(_findScrolls, {}, 100, 'rows');
         observer.startLogging('rows');
-
+/*
         setTimeout(function () {
             observer.stopWatching(watchId);
             observer.publish('rows', graph);
-        }, 3000);
+        }, 3000);*/
     });
 
     mainContext.add(buttonMod).add(runButton);

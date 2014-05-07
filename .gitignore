@@ -2,3 +2,5 @@
 /node_modules/
 /testEleSer/node_modules/
 .DS_Store
+
+/wd_tests/util/db/

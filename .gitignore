@@ -4,3 +4,7 @@
 .DS_Store
 
 /wd_tests/util/db/
+
+/wd_tests/testdb1/
+
+/wd_tests/scroll_test_1_output/

@@ -45,10 +45,10 @@ just use the observer returned by `require('famous/observer/Observer');`.
 
 The basic flow of observer is:
 
-1. Create a function you want to call repeatedly
-2. Call `observer.startWatching(myFunction, {base}, 'resultName')`.
+1. Create a function you want to call repeatedly (`getInforFromDom`).
+2. Call `observer.startWatching(getInfoFromDom, argsOrBase, frequency, broadcastMessage)`.
 3. Repeat as necessary for other things to observe
-4. When you are ready to start recording call `observer.startLogging('resultName');
+4. When you are ready to start recording call `observer.startLogging('resultName');`
 5. When you are done measuring output call `observer.publish('resultName', 'divID')` to write the result
    into a hidden dom element. (will create one if necessary.
 6. Report the data as desired to your test framework.

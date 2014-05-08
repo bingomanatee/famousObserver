@@ -25,6 +25,9 @@
   },
   "scripts": {},
   "dependencies": {
-    "lodash": "^2.4.1"
+    "lodash": "^2.4.1",
+    "rimraf": "^2.2.8",
+    "async": "^0.8.0",
+    "simple-statistics": "^0.8.0"
   }
 }

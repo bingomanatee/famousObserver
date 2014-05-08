@@ -1,0 +1,35 @@
+html {
+    background: #fff;
+}
+
+.graph-label {
+    font-size: 80%;
+}
+
+.graph {
+    background-color: salmon;
+}
+
+.graph h2 {
+    pardding: 0;
+    margin: 0;
+    font-size: 120%;
+    text-align: center;
+}
+
+* {
+    font-family: "Helvetica Neue Light", "Helvetica Light", Helvetica, arial, freesans, clean, sans-serif;
+}
+
+
+.range-label {
+    padding: 4px;
+}
+.range-label-max {
+    text-align: right;
+}
+
+.data-pip {
+    border: 1px solid white;
+    background-color: black;
+}
